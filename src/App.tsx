@@ -1,13 +1,16 @@
 import { Home } from "./pages/Home";
 import { NewRoom } from "./pages/NewRoom";
 
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import { AuthProvider } from "./hooks/useAuth";
 
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={Home} />
-      <Route path="/rooms/new" component={NewRoom} />
+      <AuthProvider>
+        <Route path="/" exact component={Home} />
+        <Route path="/rooms/new" component={NewRoom} />{" "}
+      </AuthProvider>
     </BrowserRouter>
   );
 }

@@ -1,6 +1,5 @@
+import { useAuth } from "../../hooks/useAuth";
 import { useHistory } from "react-router-dom";
-
-import { firebase, auth, database } from "../../services/firebase";
 
 import { Button } from "../../components/Button";
 import { SideAuth } from "../../components/SideAuth";
@@ -10,14 +9,14 @@ import { logoImg, googleIconImg } from "../../assets/images/exports";
 import styles from "./styles.module.scss";
 
 export function Home() {
+  const { user, signInWithGoogle } = useAuth();
+
   const history = useHistory();
 
-  function handleCreateNewRoom() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    auth.signInWithPopup(provider).then((result) => {
-      console.log(result);
-    });
+  async function handleCreateNewRoom() {
+    if (!user) {
+      await signInWithGoogle();
+    }
 
     history.push("/rooms/new");
   }
