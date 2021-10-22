@@ -23,7 +23,7 @@ export function Home() {
           <img src={logoImg} alt="Letmeask" />
           <button className={styles.createRoom}>
             <img src={googleIconImg} alt="Logo do Google" />
-            Cria sua sala com o Google
+            Crie sua sala com o Google
           </button>
 
           <div className={styles.separator}>ou entre em uma sala</div>
