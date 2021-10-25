@@ -49,7 +49,11 @@ export function Room() {
   useEffect(() => {
     const roomRef = database.ref(`/rooms/${roomId}`);
 
-    roomRef.once("value", (room) => {
+    roomRef.on("value", (room) => {
+      //olhar outros eventos do firebase que comporte melhor performatividade
+      //do que esse, já que esse recarrega TODOS os dados do banco de dados,
+      //e quero apenas que recarregue o que MUDOU
+
       const databaseRoom = room.val();
 
       const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
