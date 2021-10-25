@@ -1,24 +1,20 @@
-import { useParams } from "react-router";
-
 import { RoomCode } from "../RoomCode";
 
 import { logoImg } from "../../assets/images/exports";
 
 import styles from "./styles.module.scss";
 
-type RoomParams = {
-  id: string;
+type HeaderProps = {
+  roomId: string;
 };
 
-export function Header() {
-  const params = useParams<RoomParams>();
-
+export function Header(props: HeaderProps) {
   return (
     <header>
       <div className={styles.content}>
         <img src={logoImg} alt="Letmeask" />
 
-        <RoomCode code={params.id} />
+        <RoomCode {...props} />
       </div>
     </header>
   );
